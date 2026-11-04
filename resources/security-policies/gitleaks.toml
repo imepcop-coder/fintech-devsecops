@@ -1,0 +1,13 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Verified false positive: MEP calculator result identifiers"
+paths = [
+  '''app/routes/mep_calculators\.py''',
+  '''AI-MEP-Inspection/app/routes/mep_calculators\.py'''
+]
+regexTarget = "line"
+regexes = [
+  '''^\s*"result_key":\s*"[a-z0-9_]+"'''
+]
