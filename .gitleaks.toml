@@ -1,0 +1,14 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Verified false positive: application result_key identifiers"
+commits = [
+  "57717b868c0eab4f08b501404c7271cca5d15b71",
+  "376451e46bbb70111919394d470118741b592f52",
+  "ffb34591d1a5e1aade7701096f1cc4a89cd1aefa"
+]
+paths = [
+  '''app/routes/mep_calculators\.py''',
+  '''AI-MEP-Inspection/app/routes/mep_calculators\.py'''
+]
