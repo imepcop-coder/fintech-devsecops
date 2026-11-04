@@ -1,4 +1,8 @@
-﻿def call(Map config = [:]) {
+﻿def call() {
+    call([:])
+}
+
+def call(Map config) {
     def image = config.image ?: 'zricethezav/gitleaks:v8.24.2'
 
     echo 'Starting centralized Gitleaks secret scan'
