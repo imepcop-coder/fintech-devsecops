@@ -8,13 +8,16 @@ def call(Map config) {
     stage('Gitleaks Secret Scan') {
         echo 'Starting centralized Gitleaks scan'
 
+        def policy = libraryResource('security-policies/gitleaks.toml')
+        writeFile file: '.gitleaks.toml', text: policy
+
         if (isUnix()) {
             sh """
                 docker run --rm \
                   -v "${env.WORKSPACE}:/repo" \
                   -w /repo \
                   ${image} \
-                  git --redact --no-banner .
+                  git --config /repo/.gitleaks.toml --redact --no-banner .
             """
         } else {
             bat """
@@ -22,7 +25,7 @@ def call(Map config) {
                   -v "%WORKSPACE%:/repo" ^
                   -w /repo ^
                   ${image} ^
-                  git --redact --no-banner .
+                  git --config /repo/.gitleaks.toml --redact --no-banner .
             """
         }
 
